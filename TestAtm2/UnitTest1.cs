@@ -15,7 +15,7 @@ using System.Linq;
     public void TestBalance2()
     {
         ATM.Balance = 1000;
-
+      
         // Act
 
 
@@ -26,14 +26,14 @@ using System.Linq;
     }
 
     [Theory]
-    [InlineData(500, 1500)]
+    [InlineData(500, 1500,1000)]
 
-    [InlineData(-300, 1000)]
-    [InlineData(1500, 2500)]
-    public void TestDeposite(decimal depositeValue, decimal EexpectedBalanceAfterDeposite)
+    [InlineData(-300, 1000, 1000)]
+    [InlineData(1500, 2500,1000 )]
+    public void TestDeposite(decimal depositeValue, decimal EexpectedBalanceAfterDeposite , decimal balance)
     {
-        decimal initialBalance = 1000;
-        ATM.Balance = initialBalance;
+       
+        ATM.Balance = balance;
 
         decimal actual = ATM.Deposit(depositeValue);
         Assert.Equal(EexpectedBalanceAfterDeposite, actual);
@@ -41,15 +41,15 @@ using System.Linq;
 
     }
     [Theory]
-    [InlineData(1500, 1000)]
-    [InlineData(500, 500)]
+    [InlineData(1500, 1000,1000)]
+    [InlineData(500, 500,1000)]
 
-    [InlineData(-300, 1000)]
+    [InlineData(-300, 1000,1000)]
 
-    public void TestWithdrawst2(decimal drawnValue, decimal EexpectedBalance)
+    public void TestWithdrawst2(decimal drawnValue, decimal EexpectedBalance, decimal balance)
     {
-        decimal initialBalance = 1000;
-        ATM.Balance = initialBalance;
+       
+        ATM.Balance =balance;
 
         decimal actual = ATM.Withdraw(drawnValue);
         Assert.Equal(EexpectedBalance, actual);
